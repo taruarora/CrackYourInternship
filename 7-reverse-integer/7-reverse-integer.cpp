@@ -9,7 +9,8 @@ public:
             s=s*10+r;
             
         }
-         if(s < -pow(2,31) || s > pow(2,31)-1)
+         long long int y=pow(2,31);
+         if(s < -y || s > y-1)
            return 0;
         return int(s);
         
