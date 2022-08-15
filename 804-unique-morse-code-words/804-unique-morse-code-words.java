@@ -3,7 +3,8 @@ class Solution {
     public int uniqueMorseRepresentations(String[] words) {
         String codes[]={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
        
-       HashMap<String,Integer> map = new HashMap<>();   
+       //HashMap<String,Integer> map = new HashMap<>();   
+        Set<String> set = new HashSet<String>(); 
       for(int i=0;i<words.length;i++){
             String word= words[i];
             StringBuilder morse= new StringBuilder();
@@ -13,9 +14,9 @@ class Solution {
                 int idx= ch-97;
                 morse.append(codes[idx]);
             }
-            map.put(morse.toString(),1);
+            set.add(morse.toString());
         }
         
-        return map.size();
+        return set.size();
     }
 }
