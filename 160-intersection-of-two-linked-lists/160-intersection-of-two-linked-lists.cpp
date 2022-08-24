@@ -15,18 +15,21 @@ public:
         ListNode *ptr;
         int p1=0, p2=0;
         
-        while(ptr1)
+       while(ptr1 || ptr2)
         {
-            p1++;
-            ptr1=ptr1->next;
+            if(ptr1)
+            {
+                p1++;
+                ptr1=ptr1->next;
+             
+            }
+            if(ptr2)
+            {
+              p2++;
+              ptr2=ptr2->next;  
+            }
         }
         
-        
-        while(ptr2)
-        {
-            p2++;
-            ptr2=ptr2->next;
-        }
         
        
         if(p2>p1)
