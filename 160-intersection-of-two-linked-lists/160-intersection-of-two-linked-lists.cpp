@@ -20,8 +20,7 @@ public:
         ptr=headB;
         while(ptr)
         {
-            m[ptr]++;
-            if(m[ptr]==2){
+            if(m.find(ptr)!=m.end()){
                 return ptr;}
             ptr=ptr->next;
         }
