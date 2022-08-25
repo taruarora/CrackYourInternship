@@ -14,47 +14,31 @@ public:
         ListNode *ptr2=headB;
         ListNode *ptr;
         int p1=0, p2=0;
+        if(headA==NULL||headB==NULL)return NULL;
         
-       while(ptr1 || ptr2)
+        
+        while(ptr1!= ptr2)
         {
-            if(ptr1)
+            if(!ptr1)
             {
-                p1++;
-                ptr1=ptr1->next;
+                ptr1=headB;
              
             }
-            if(ptr2)
+            else
+                 ptr1=ptr1->next;
+            if(!ptr2)
             {
-              p2++;
-              ptr2=ptr2->next;  
+                ptr2=headA;
+             
             }
+           else
+            ptr2=ptr2->next;
+           
         }
         
+        return ptr1;
         
        
-        if(p2>p1)
-        {
-           ptr2=headA;
-           ptr1=headB;
-        }
-         else
-        {
-           ptr1=headA;
-           ptr2=headB;
-        }
-        
-        for(int i=0;ptr1 && i<abs(p1-p2) ;i++)
-        {
-            cout<<ptr1->val;
-            ptr1=ptr1->next;
-        }
-        for(int i=0;i<p2;i++)
-        {
-            if(ptr1==ptr2)return ptr1;
-            ptr1=ptr1->next;
-            ptr2=ptr2->next;
-        }
-        
-        return NULL;
+       
     }
 };
