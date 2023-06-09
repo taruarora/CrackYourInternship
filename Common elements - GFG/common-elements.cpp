@@ -9,31 +9,22 @@ class Solution
     public:    
        vector <int> commonElements (int a[], int b[], int c[], int n1, int n2, int n3)
         {
-            vector<int> v;
-            map<int,int> m1;
-            map<int,int> m2;
-            map<int,int> m3;
-            for(int i=0;i<n1;i++)
+            vector<int> ans;
+            int i=0,j=0,k=0;
+            while(i<n1 && j<n2 && k<n3)
             {
-                m1[a[i]]++;
-            }
-            for(int i=0;i<n2;i++)
-            {
-                m2[b[i]]++;
-            }
-            for(int i=0;i<n3;i++)
-            {
-                m3[c[i]]++;
-            }
-            for(int i=0;i<n1;i++)
-            {
-                if(m1[a[i]] &&m2[a[i]] && m3[a[i]])
+                if(a[i]==b[j] && b[j]==c[k])
                 {
-                    v.push_back(a[i]);
-                    m1[a[i]]=0;
+                     if(ans.empty() || ans.back() != a[i])
+                        ans.push_back(a[i]);
+                    i++;j++;k++;
                 }
+                while(a[i]<b[j] || a[i]<c[k])i++;
+                while(b[j]<c[k] || b[j]<a[i])j++;
+                while(c[k]<a[i] || c[k]<b[j])k++;
+                
             }
-            return v;
+            return ans;
         }
 
 };
