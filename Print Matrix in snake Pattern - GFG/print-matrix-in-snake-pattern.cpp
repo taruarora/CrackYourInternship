@@ -13,25 +13,20 @@ class Solution
     {   
         // code here
         int n=matrix.size();
-        int f=0, j;
+        int m=matrix[0].size();
         vector<int> v;
         for(int i=0;i<n;i++)
         {
-            if(i%2==0)
+            for(int j=0;j<m;j++)
             {
-                for(int j=0;j<n;j++)
-                {
-                    v.push_back(matrix[i][j]);
-                //cout<<matrix[i][j];
-                }
+                v.push_back(matrix[i][j]);
             }
-            else
+            if(i+1<n)
             {
-                j=n-1;
-                for(int j=n-1;j>=0;j--)
+                i++;
+                for(int j=m-1;j>=0;j--)
                 {
                     v.push_back(matrix[i][j]);
-                //cout<<matrix[i][j];
                 }
             }
         }
