@@ -6,16 +6,17 @@ public:
         int m=matrix[0].size();
         int rs=0, cs=0, re=n-1,ce=m-1,count=0;
         
-        while(rs<=n && cs<=m)
+        int s=m*n;
+        while(rs<n && cs<m )
         {
-            for(int c=cs;c<=ce &&count< m*n;c++)
+            for(int c=cs;c<=ce && count<s;c++)
             {
                 v.push_back(matrix[rs][c]);
                 count++;
             }
             
             rs=rs+1;
-            for(int r=rs;r<=re && count< m*n;r++)
+            for(int r=rs;r<=re && count<s;r++)
             {
                 v.push_back(matrix[r][ce]);
                 count++;
@@ -23,7 +24,7 @@ public:
              
             ce=ce-1;
             
-              for(int c=ce;c>=cs && count< m*n;c--)
+              for(int c=ce;c>=cs && count<s;c--)
               {
                 v.push_back(matrix[re][c]);
                   count++;
@@ -31,7 +32,7 @@ public:
              
              re=re-1;
            
-              for(int r=re;r>=rs && count< m*n;r--)
+              for(int r=re;r>=rs && count<s;r--)
               {
                 v.push_back(matrix[r][cs]);
                   count++;
