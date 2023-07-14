@@ -12,16 +12,16 @@ class Solution{
 public:
     int remove_duplicate(int arr[],int n){
         // code here
-        int low=0;
-        for(int i=0;i<n;i++)
+        int res=1;
+        for(int i=1;i<n;i++)
         {
-            while(i<n && arr[i]==arr[i+1])i++;
-            if(i>=n)return low;
-            arr[low++]=arr[i];
-            
-            
+            if(arr[i]!=arr[res-1])
+            {
+                arr[res]=arr[i];
+                ++res;
+            }
         }
-        return low;
+        return res;
     }
 };
 
