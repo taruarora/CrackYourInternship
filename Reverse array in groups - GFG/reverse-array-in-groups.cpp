@@ -8,77 +8,23 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
-/*class Solution{
-public:
-    //Function to reverse every sub-array group of size k.
-    void reverseInGroups(vector<long long>& arr, int n, int k){
-        // code here
-        int j=0;
-        int i=0;
-        int left=-k;
-        int end=ceil(float(n)/k);
-       // cout<<i<<"\n";
-       
-        if(k>n)
-        {
-           reverse(arr.begin(),arr.end());
-           return;
-        }
-         
-        for(int c=0;c<end;c++)
-        {
-            i=c*k;
-            //left=i+k;
-            j=i+k-1;
-            
-            cout<<i<<j<<"\n";
-            
-            if(j>=n)j=n-1;
-            if(i>=n)break;
-            
-            while(j<n && i<j)
-             swap(arr[i++],arr[j--]);
-            
-            
-        }
-    }
-    
-};*/
 class Solution{
 public:
     //Function to reverse every sub-array group of size k.
     void reverseInGroups(vector<long long>& arr, int n, int k){
         // code here
-       int j=k-1;
-       int i=0;
-        //int left=-k;
-        int end = n/k;
-        int m = n%k;
-        
-       // cout<<i<<"\n";
-       
-       
-        for(int c = 0; c < end; c++)
+        for(int i=0;i<n;i=i+k)
         {
-            
-            
-            i = k*c;
-            j = i + k - 1;
-            //cout<<i<<j<<"\n";
-            
-            if(j>=n)j=n-1;
-            if(i>=n)break;
-            
-            while(j<n && i<j)
-             swap(arr[i++],arr[j--]);
+            int s=i;
+            int e=s+k-1;
+            if(e>=n)e=n-1;
+            while(s<=e)
+            {
+                swap(arr[s++],arr[e--]);
+            }
         }
-        
-        
-        
-        reverse(arr.begin()+n-m,arr.end());
-   }
+    }
 };
-
 
 //{ Driver Code Starts.
 int main() {
