@@ -10,49 +10,26 @@
  * };
  */
 class Solution {
+    TreeNode* parent(TreeNode* root, int x) {
+        if(root == NULL) return NULL;
+        if(root->val == x) return NULL;
+        if(root->left != NULL && root->left->val == x) return root;
+        if(root->right != NULL && root->right->val == x) return root;
+        if(parent(root->left, x) != NULL) return parent(root->left, x);
+        else return parent(root->right, x);
+    }
+
+    int depth(TreeNode* root, int x) {
+        if(root == NULL) return 10001;
+        if(root->val == x) return 0;
+
+        return min(depth(root->left, x), depth(root->right, x)) + 1;
+    }
 public:
     bool isCousins(TreeNode* root, int x, int y) {
-        queue<TreeNode* > q;
-        TreeNode*t, *ptr=root;
-        bool b, c;
-        if(x==root->val || y==root->val)return false;
-        q.push(root);
-        while(!q.empty())
-        {
-            int size=q.size();
-            vector<int> v;
-            TreeNode* parent=q.front();
-            for(int i=0;i<size;i++)
-            {
-                t=q.front();
-                cout<<(t==root);
-                q.pop();
-                v.push_back(t->val);
-               if(t->left)
-               {
-                   q.push(t->left);
-                   if(t->left->val==x || t->left->val==y)b=true;
-               }
-               if(t->right)
-               {
-                   q.push(t->right);
-                   if(t->right->val==y || t->right->val==x)c=true;
-               }
-                if(b && c)return false;
-                b=c=false;
-            }
-            
-                b=c=false;
-                for(int i=0;i<size;i++)
-                {
-                if(v[i]==x)b=true;
-                else if(v[i]==y)c=true;
-                
-                if(b && c)return true;
-               }
-            
-        }
+        if(depth(root, x) == depth(root, y) && parent(root, x) != parent(root, y))
+            return true;
         return false;
-        
     }
+
 };
