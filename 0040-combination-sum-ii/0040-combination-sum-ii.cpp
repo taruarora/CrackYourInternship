@@ -1,60 +1,31 @@
 class Solution {
 public:
-    /*One Way
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        set<vector<int>>  res;
-        vector<int> arr;
-        set<vector<int>> r;
-        sort(candidates.begin(),candidates.end());
-        r=combSum(0,arr, target, res, candidates); 
-        vector<vector<int>> v(r.begin(),r.end());
-        return v;
-    }
-    
-    set<vector<int>> combSum(int ind, vector<int> v, int  target, set<vector<int>> &res, vector<int> arr)
+    void recur(int ind,vector<int>& nums, vector<int>& ds,vector<vector<int>>& ans, int target)
     {
-        
-        if(ind==arr.size())
+        if(target<0)return;
+        if(target==0)
         {
-            if(target==0)
-             res.insert(v);
-            return res;
+            ans.push_back(ds);
+            return;
         }
-        if (arr[ind]<=target)
-        { 
-        v.push_back(arr[ind]);
-        res=combSum(ind+1,v,target-arr[ind], res,arr );
-        v.pop_back();
+        //ans.push_back(ds);
+        for(int i=ind;i<nums.size();i++)
+        {
+            if(i!=ind && nums[i]== nums[i-1])
+                continue;
+            
+            ds.push_back(nums[i]);
+            recur(i+1,nums,ds,ans,target-nums[i]);
+            ds.pop_back();
+                //recur(ind+1,arr,n,ds,ans);
         }
-        res= combSum(ind+1,v,target, res,arr );
         
-        return res;
     }
-    */
-    
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        vector<vector<int>>  ans;
-        vector<int> arr;
-        sort(candidates.begin(),candidates.end());
-        combSum(0, target,candidates, ans,arr); 
+    vector<vector<int>> combinationSum2(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>> ans;
+        vector<int> ds;
+        recur(0,nums,ds,ans,target);
         return ans;
-    }
-    
-    void combSum(int ind, int target, vector<int> &arr, vector<vector<int>> &ans, vector<int>&ds)
-        {   
-          if(target==0)
-          {    
-             ans.push_back(ds);
-             return;
-          }
-        
-        for(int i = ind;i<arr.size();i++) {
-            if(i>ind && arr[i]==arr[i-1]) continue; 
-            if(arr[i]>target) break; 
-            ds.push_back(arr[i]);
-            combSum(i+1, target - arr[i], arr, ans, ds); 
-            ds.pop_back(); 
-        }
-        
     }
 };
