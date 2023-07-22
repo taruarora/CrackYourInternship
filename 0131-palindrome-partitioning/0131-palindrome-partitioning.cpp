@@ -1,36 +1,41 @@
 class Solution {
 public:
-    vector<vector<string>> partition(string s) {
-        vector<vector<string>> ans;
-        vector <string> arr;
-        recur(0,s, ans,arr);
-        return ans;
-        
-    }
-    void recur(int ind, string s, vector<vector<string>> &ans,vector<string> arr)
+    bool palindrome(string str)
     {
-      if(ind==s.size())
-      {
-          ans.push_back(arr);
-          return;
-      }
-        for(int i=ind;i<s.size();i++)
+        int s=0,l=str.length()-1;
+        while(s<=l)
         {
-            if(isPalindrome(s,ind,i)==true)
-            {
-                arr.push_back(s.substr(ind,i-ind+1));
-                recur(i+1,s,ans,arr);
-                arr.pop_back();
-            }
-        }
-    }
-    bool isPalindrome(string s, int start, int end)
-    {
-        while(start<=end)
-        {
-            if(s[start ++]!=s[end--])
-                return false;
+            if(str[s++]!=str[l--])return false;
         }
         return true;
+    }
+    void recur(int ind,string s,vector<string>& ds,vector<vector<string>>& ans)
+    {
+        if(ind==s.length())
+        {
+            ans.push_back(ds);
+            return;
+        }
+            
+        
+        for(int i=ind;i<s.length();i++)
+        {
+            //if(ind<i+1)
+             string str=s.substr(ind,i-ind+1);
+            if(palindrome(str))
+            {
+                ds.push_back(str);
+                recur(i+1,s,ds,ans);
+                ds.pop_back();
+            }
+            
+            
+        }
+    }
+    vector<vector<string>> partition(string s) {
+        vector<string> ds;
+        vector<vector<string>> ans;
+        recur(0,s,ds,ans);
+        return ans;
     }
 };
