@@ -27,19 +27,24 @@ int main() {
 
 // } Driver Code Ends
 
-#include<bits/stdc++.h>
-string isSubset(int a1[], int a2[], int n, int m2) {
-    map<int,int> m;
-    for(int i=0;i<n;i++)
-    {
-        m[a1[i]]++;
-    }
-    for(int j=0;j<m2;j++)
-    {
-        m[a2[j]]--;
-        if(m[a2[j]]<0)return "No";
-        
-    }
-    return "Yes";
+
+string isSubset(int a1[], int a2[], int n, int m) {
+    sort(a1,a1+n);
+    sort(a2,a2+m);
     
+    int i=0,c1=0,j=0;
+    while(i<m && j<n)
+    {
+        if(a2[i]==a1[j])
+        {
+            c1++;
+            i++;
+            j++;
+        }
+        else if(a2[i]>a1[j])j++;
+        else
+         i++; 
+    }
+    if(c1==m)return "Yes";
+    return "No";
 }
