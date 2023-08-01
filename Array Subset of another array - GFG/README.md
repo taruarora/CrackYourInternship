@@ -28,4 +28,4 @@ a2[] is not a subset of a1[]</span></pre>
 <p>&nbsp;</p>
 <p><span style="font-size: 18px;"><strong>Your Task:&nbsp;&nbsp;</strong><br>You don't need to read input or print anything. Your task is to complete the function <strong>isSubset()</strong>&nbsp;which takes the array <strong>a1[]</strong>, <strong>a2[]</strong>, its size <strong>n </strong>and <strong>m </strong>as inputs and return "Yes" if arr2 is subset of arr1 else return "No" if arr2 is not subset of arr1.</span></p>
 <p>&nbsp;</p>
-<p><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong> O(n)<br><strong>Expected Auxiliary Space:</strong> O(n)<br><br><strong>Constraints:</strong><br>1 &lt;= n,m &lt;= 10<sup>5</sup><br>1 &lt;= a1[i], a2[j] &lt;= 10<sup>6</sup></span></p></div>
+<p><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong> O(max(n,m))<br><strong>Expected Auxiliary Space:</strong> O(n)<br><br><strong>Constraints:</strong><br>1 &lt;= n,m &lt;= 10<sup>5</sup><br>1 &lt;= a1[i], a2[j] &lt;= 10<sup>6</sup></span></p></div>
