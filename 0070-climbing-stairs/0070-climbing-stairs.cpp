@@ -1,16 +1,20 @@
 class Solution {
 public:
-    int climbStairs(int n) {
-        vector<int>df(n+1,-1);
-        df[0]=df[1]=1;
-        return climb(n,df);
+    int climb(int n,vector<int> &dp) {
+        if(n==-1)return 0;
+        if(n==0)return 1;
+        if(dp[n]!=-1)return dp[n];
+            
+        int s1=climb(n-1,dp);
+        int s2=climb(n-2,dp);
+        //cout<<s1<<" "<<s2<<"\n";
+        return dp[n]= s1+s2;
+        
     }
-    
-    int climb(int ind,vector<int> &df) {
-        if(df[ind]!=-1)
-         return df[ind];
-        df[ind-1]=climb(ind-1,df);
-        df[ind-2]=climb(ind-2,df);
-        return df[ind]=df[ind-1]+df[ind-2];
+    int climbStairs(int n)
+    {
+        vector<int> dp(n+1,-1);
+        climb(n,dp);
+        return dp[n];
     }
 };
